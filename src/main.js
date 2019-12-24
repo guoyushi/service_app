@@ -5,7 +5,11 @@ import store from './store'
 import './assets/css/reset.css'
 import BaiduMap from 'vue-baidu-map'
 Vue.config.productionTip = false
-
+import Vant from 'vant';
+import 'vant/lib/index.css';
+import { Lazyload } from 'vant';
+Vue.use(Lazyload);
+Vue.use(Vant);
 Vue.use(BaiduMap, {
   // ak 是在百度地图开发者平台申请的密钥 详见 http://lbsyun.baidu.com/apiconsole/key */
   ak: 'ZBkSjKKvGepsptp5VpbzH9BMFPTR3St6'
