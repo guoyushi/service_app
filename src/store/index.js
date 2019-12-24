@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import vuex from 'vuex'
 import home_store from './modules/home_store'
+import header_store from './modules/header_store'
 
 Vue.use(vuex)
 export default new vuex.Store({
@@ -14,6 +15,7 @@ export default new vuex.Store({
 
     },
     modules:{
-        home:home_store
+        home:home_store,
+        header:header_store
     }
 })

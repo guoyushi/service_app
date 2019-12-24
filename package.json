@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "core-js": "^3.4.3",
-    "vue": "^2.6.10"
+    "vue": "^2.6.10",
+    "vue-baidu-map": "^0.21.22"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.1.0",
@@ -36,7 +37,10 @@
     ],
     "rules": {
       "no-console": "off",
-      "allowEmptyCatch": true
+      "no-debugger": "off",
+      "allowEmptyCatch": true,
+      "no-undef":"off",
+      "no-irregular-whitespace": "off"
     },
     "parserOptions": {
       "parser": "babel-eslint"

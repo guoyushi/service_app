@@ -30,12 +30,13 @@ module.exports = {
     //   plugins: [new webpack.DefinePlugin({
     //     'process.env.MODULES': '"' + pages + '"'
     //   })],
-    // externals: {
+    externals: {
+      'BMap':'BMap'
     //   'jquery': 'jQuery',
     //   'echarts': 'echarts',
     //   'Cesium': 'Cesium',
     //   'cs3d': 'cs3d'
-    // }
+    }
   }),
   //   pwa: { 
   //     iconPaths: {
