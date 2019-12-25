@@ -5,5 +5,8 @@ export default {
     },
     getCategroy(params){
         return fetchs('get','/api/daoway/rest/category/for_filter',params)
+    },
+    getRecommend(params){
+        return fetchs('get','/api/daoway/rest/service_items/recommend_top',params)
     }
 }
