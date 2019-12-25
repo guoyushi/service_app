@@ -33,7 +33,7 @@ export default {
       geolocation.getCurrentPosition(
         function getinfo(position) {
           const myGeo = new BMap.Geocoder();
-          this.$store.commit('setPosition',position.point)
+          _this.$store.commit('setPosition',position.point)
           myGeo.getLocation(
             new BMap.Point(position.point.lng, position.point.lat),
             data => {
