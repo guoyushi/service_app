@@ -76,6 +76,9 @@ export default {
     width: 100%;
     height: 3rem;
     margin-top: 0.4rem;
+    /deep/ .anchorBL{
+      display:none;
+    }
   }
 }
 </style>

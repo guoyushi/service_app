@@ -24,4 +24,4 @@ body {font-family: Arial, "Microsoft Yahei", "Helvetica Neue", Helvetica, sans-s
 hr {height: .02rem;margin: .1rem 0;border: medium none;border-top: .02rem solid #cacaca;}
 a {color: #25a4bb;text-decoration: none;}
 /* touch-action: none; 解决 谷歌浏览器在 移动端情况下滑动报错问题，会导致鼠标拖拽浏览器滑动无反应 */
-body {overflow-y: auto;-webkit-overflow-scrolling: touch; touch-action: none; } body::-webkit-scrollbar {width: 0px;}
+body {overflow: hidden;-webkit-overflow-scrolling: touch; touch-action: none; } body::-webkit-scrollbar {width: 0px;}

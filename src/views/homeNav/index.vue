@@ -24,8 +24,11 @@ export default {
   overflow:hidden;
   .main{
     width: 100%;
-    height: 100%;
-    padding: 0 0 .4rem 0;
+    position:absolute;
+    bottom:.4rem;
+    top:0;
+    left:0;
+    right:0;
     box-sizing: border-box;
     overflow-y:auto;
   }

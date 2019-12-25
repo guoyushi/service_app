@@ -47,18 +47,18 @@ module.exports = {
   //       msTileImage: 'favicon.ico'
   //     } 
   //   },
-  //   devServer: {
-  //     host: 'dev.jdcloud.com',
-  //     port: 8080,
-  //     hot: true,
-  //     proxy: {
-  //       '/aioc-api': {
-  //         target: 'http://hebi-cloud.xjoycity.com',
-  //         changeOrigin: true,
-  //         pathRewrite: {
-  //           '^/aioc-api': ''
-  //         }
-  //       }
-  //     }
-  //   }
+    devServer: {
+      host: 'localhost',
+      port: 8080,
+      hot: true,
+      proxy: {
+        '/api': {
+          target: 'http://www.daoway.cn',
+          changeOrigin: true,
+          pathRewrite: {
+            '^/api': ' '
+          }
+        }
+      }
+    }
 }
