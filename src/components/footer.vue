@@ -2,6 +2,7 @@
     <div class="footer">
       <router-link to="home">首页</router-link>
       <router-link to="categroy">分类</router-link>
+      <router-link to="message">消息</router-link>
       <router-link to="order">订单</router-link>
       <router-link to="my">我的</router-link>
     </div>
@@ -33,6 +34,12 @@
     a{
       flex:1;
       text-align: center;
+      font-size:.14rem;
+      color:#000;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
     }
   }
 </style>

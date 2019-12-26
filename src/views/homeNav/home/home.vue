@@ -3,7 +3,7 @@
     <div class="header_top">
       <top></top>
     </div>
-    <div class="content">
+    <div ref="content" class="content">
       <div class="swiper">
         <van-swipe :autoplay="3000">
           <van-swipe-item v-for="(image, index) in bannerImg" :key="index">
@@ -69,6 +69,9 @@ export default {
       recommend: [] // 服务排行
     };
   },
+  watch: {
+    $route: "isTabRoute"
+  },
   components: {
     top
   },
@@ -76,6 +79,12 @@ export default {
     this.init();
   },
   methods: {
+    isTabRoute: function() {
+      if (this.$route.path === "/home") {
+        let recruitScrollY = this.$store.state.home.recruitScrollY;
+        this.$refs.content.scrollTop = recruitScrollY;
+      }
+    },
     init() {
       let params = {
         h5: 1,
@@ -96,7 +105,6 @@ export default {
         channel: "daoway"
       };
       api.getCategroy(categroy).then(res => {
-        console.log(res);
         let arr = res.data;
         this.ext = res.ext;
         let num = Math.ceil(arr.length / 10);
@@ -115,10 +123,15 @@ export default {
         manualCity: "北京"
       };
       api.getRecommend(recommend_top).then(res => {
-        console.log(res);
         this.recommend = res.data;
       });
     }
+  },
+  beforeRouteLeave(to, from, next) {
+    let position = this.$refs.content.scrollTop; //记录离开页面时的位置
+    if (position == null) position = 0;
+    this.$store.commit("changeRecruitScrollY", position); //离开路由时把位置存起来
+    next();
   }
 };
 </script>
@@ -131,13 +144,13 @@ export default {
     position: absolute;
     top: 0;
     left: 0;
-    height: 0.4rem;
+    height: 0.42rem;
     right: 0;
     z-index: 1;
   }
   .content {
     position: absolute;
-    top: 0.4rem;
+    top: 0.42rem;
     left: 0;
     right: 0;
     bottom: 0;
@@ -249,14 +262,14 @@ export default {
                 font-weight: normal;
               }
               span {
-                height: .3rem;
+                height: 0.3rem;
                 overflow: hidden;
-                line-height: .3rem;
-                margin-left: .01rem;
+                line-height: 0.3rem;
+                margin-left: 0.01rem;
                 font-size: 0.12rem;
                 em {
                   display: table-cell;
-                  margin-right: .06rem;
+                  margin-right: 0.06rem;
                   line-height: normal;
                   border: 0.5px solid #e94840;
                   border-radius: 0.03rem;

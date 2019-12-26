@@ -11,26 +11,43 @@ Vue.use(Router)
 const router = new Router({
   // mode: 'history',
   // base: process.env.BASE_URL,
-  routes: [
-    {
+  routes: [{
       path: '/login',
-			name: 'login',
+      name: 'login',
+      meta:{
+        tx:1
+      },
       component: () => import('./views/login/login.vue')
     },
     {
-			path: '/',
+      path: '/hot_service',
+      name: 'hot_service',
+      meta:{
+        tx:2
+      },
+      component: () => import('./views/hotService/hotService.vue')
+    },
+    {
+      path: '/',
       name: 'homeNav',
-      redirect:'home',
+      redirect: 'home',
+      meta:{
+        keepAlive:true
+      },
       component: () => import('./views/homeNav/index.vue'),
-      children:[
-        {
+      children: [{
           path: '/home',
           name: 'home',
+          meta:{
+            tx:3,
+            keepAlive:true
+          },
           component: () => import('./views/homeNav/home/home.vue')
         },
         {
           path: '/order',
           name: 'order',
+          
           component: () => import('./views/order/order.vue')
         },
         {
@@ -41,7 +58,15 @@ const router = new Router({
         {
           path: '/categroy',
           name: 'categroy',
+          meta:{
+            keepAlive:true
+          },
           component: () => import('./views/categroy/categroy.vue')
+        },
+        {
+          path: '/message',
+          name: 'message',
+          component: () => import('./views/message/message.vue')
         }
       ]
     },
@@ -63,4 +88,5 @@ const router = new Router({
 //     }
 //   })
 // })
+
 export default router
