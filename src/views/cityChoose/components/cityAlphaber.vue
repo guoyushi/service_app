@@ -54,8 +54,8 @@ export default {
         }
         this.timer = setTimeout(() => {
           // const startY = this.$refs['A'][0].offsetTop
-          const touchY = e.touches[0].clientY - 20
-					// console.log(e.touches[0])
+          const touchY = e.touches[0].clientY - 15
+					console.log(e.touches[0])
           const index = Math.floor((touchY - this.startY) / 30)
           if (index >= 0 && index < this.letters.length) {
             this.$emit('change', this.letters[index])
