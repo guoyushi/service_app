@@ -8,13 +8,13 @@
           v-model="value"
         />
       </span>
-    <mapDialog v-if="flag"></mapDialog>
+    <!--<mapDialog v-if="flag"></mapDialog>-->
   </div>
 </template>
 
 <script>
 // import BMap from 'BMap'
-import mapDialog from "./mapDialog";
+// import mapDialog from "./mapDialog";
 export default {
   name: "heard",
   data() {
@@ -71,7 +71,10 @@ export default {
     },
     //选择地址
     handleClick() {
-      this.$store.commit("setFlag", true);
+      // this.$store.commit("setFlag", true);
+      this.$router.push({
+        path: "/city_choose"
+      });
     },
     //搜索框获取焦点时
     focus() {
@@ -81,7 +84,7 @@ export default {
     }
   },
   components: {
-    mapDialog
+    // mapDialog
   }
 };
 </script>

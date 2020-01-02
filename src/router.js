@@ -28,6 +28,11 @@ const router = new Router({
       component: () => import('./views/hotService/hotService.vue')
     },
     {
+      path:'/city_choose',
+      name:'city_choose',
+      component: () => import('./views/cityChoose/cityChoose.vue')
+    },
+    {
       path: '/',
       name: 'homeNav',
       redirect: 'home',

@@ -48,7 +48,7 @@ module.exports = {
   //     } 
   //   },
     devServer: {
-      host: 'localhost',
+      host: '192.168.43.81',
       port: 8080,
       hot: true,
       proxy: {
