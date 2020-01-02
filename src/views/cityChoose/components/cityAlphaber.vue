@@ -2,13 +2,13 @@
   <ul class="list">
     <li
       class="item"
-      v-for="item of letters"
-      :key="item"
+      v-for="(item, index) in letters"
+      :key="index"
       :ref="item"
-      @touchstart.prevent="handleTouchStart"
+      @touchstart="handleTouchStart"
       @touchmove="handleTouchMove"
       @touchend="handleTouchEnd"
-      @click="handleLetterClick"
+      @click="handleLetterClick(item)"
     >
       {{ item }}
     </li>
@@ -41,8 +41,8 @@ export default {
     this.startY = this.$refs['A'][0].offsetTop
   },
   methods: {
-    handleLetterClick (e) {
-      this.$emit('change', e.target.innerText)
+    handleLetterClick (item) {
+      this.$emit('change', item)
     },
     handleTouchStart () {
       this.touchStatus = true
@@ -54,9 +54,8 @@ export default {
         }
         this.timer = setTimeout(() => {
           // const startY = this.$refs['A'][0].offsetTop
-          const touchY = e.touches[0].clientY -10
-          console.log(touchY)
-          console.log(this.startY)
+          const touchY = e.touches[0].clientY - 20
+					// console.log(e.touches[0])
           const index = Math.floor((touchY - this.startY) / 30)
           if (index >= 0 && index < this.letters.length) {
             this.$emit('change', this.letters[index])
@@ -81,13 +80,13 @@ export default {
   top: 0;
   right: 0;
   bottom: 0;
-  width: .4rem;
+  width: 0.4rem;
   .item {
-    line-height: .3rem;
+    line-height: 0.3rem;
     width: 100%;
     text-align: center;
     color: #ff4775;
-    font-size:.14rem;
+    font-size: 0.14rem;
   }
 }
 </style>
