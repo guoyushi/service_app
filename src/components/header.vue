@@ -100,7 +100,7 @@ export default {
   display: flex;
   justify-content: space-around;
   line-height: 0.42rem;
-  aligin-items: center;
+  align-items: center;
   span {
     font-size: 0.2rem;
   }

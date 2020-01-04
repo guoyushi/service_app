@@ -1,5 +1,5 @@
 <template>
-  <ul class="list">
+  <ul class="list" ref='list'>
     <li
       class="item"
       v-for="(item, index) in letters"
@@ -15,7 +15,7 @@
   </ul>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
 export default {
   name: 'CityAlphabet',
   props: {
@@ -34,11 +34,16 @@ export default {
     return {
       touchStatus: false,
       startY: 0,
-      timer: null
+      timer: null,
+			offsetTop:0
     }
   },
+	mounted() {
+		this.offsetTop = this.$refs.list.offsetTop
+	},
   updated () {
     this.startY = this.$refs['A'][0].offsetTop
+
   },
   methods: {
     handleLetterClick (item) {
@@ -54,8 +59,10 @@ export default {
         }
         this.timer = setTimeout(() => {
           // const startY = this.$refs['A'][0].offsetTop
-          const touchY = e.touches[0].clientY - 15
-          const index = Math.floor((touchY - this.startY) / 30)
+					// console.log(e.target.style)
+          const touchY = e.touches[0].clientY - this.offsetTop
+					let height = e.target.offsetHeight //获取不同型号手机的item高度
+          const index = Math.floor((touchY - this.startY) / height)
           if (index >= 0 && index < this.letters.length) {
             this.$emit('change', this.letters[index])
           }
@@ -73,15 +80,15 @@ export default {
 .list {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   position: absolute;
-  top: 0;
+  top: 0.5rem;
   right: 0;
   bottom: 0;
   width: 0.4rem;
   .item {
-    line-height: 0.3rem;
+    line-height: 0.25rem;
     width: 100%;
     text-align: center;
     color: #ff4775;
