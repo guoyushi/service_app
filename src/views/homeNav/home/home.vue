@@ -101,7 +101,7 @@ export default {
   data() {
     return {
       date: "7月", //展示
-      year: "", //传给后台的年
+      year: "", //传给后台的年份
       month: "", //传给后台的月份
       flag: false,
       newList:0,//新订单

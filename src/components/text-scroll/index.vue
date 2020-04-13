@@ -1,6 +1,6 @@
 <template>
   <div class="PageTextScroll">
-    <img src="../../assets/dianpu.png" alt="">
+    <img src="../../assets/laba.png" alt="">
     <text-scroll
       :data-list="data"
       scroll-type="scroll-left-linear"

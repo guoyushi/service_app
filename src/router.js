@@ -39,9 +39,9 @@ const router = new Router({
           component: () => import('./views/my/my.vue')
         },
         {
-          path: '/categroy',
-          name: 'categroy',
-          component: () => import('./views/categroy/categroy.vue')
+          path: '/message',
+          name: 'message',
+          component: () => import('./views/message/message.vue')
         }
       ]
     },
