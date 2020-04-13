@@ -2,9 +2,12 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import Vant from 'vant';
+import 'vant/lib/index.css';
 import './assets/css/reset.css'
 Vue.config.productionTip = false
 
+Vue.use(Vant);
 // let modules = process.env.MODULES.split(',')
 // console.log(modules)
 // modules.map(item => {
