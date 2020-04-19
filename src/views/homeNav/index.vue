@@ -1,8 +1,6 @@
 <template>
   <div class="wrapper">
-    <div class="main">
-      <router-view></router-view>
-    </div>
+    <router-view></router-view>
     <main-footer></main-footer>
   </div>
 </template>

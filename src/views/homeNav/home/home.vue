@@ -1,9 +1,16 @@
 <template>
   <div class="homeWrapper">
+    <van-overlay :show="isDialog" @click="isDialog = false">
+      <div class="dialog">
+        <i></i>
+        <p @click.stop="statusClick(0)">营业中(正常接单)</p>
+        <p @click.stop="statusClick(1)">休息中(停止接单)</p>
+      </div>
+    </van-overlay>
     <div class="header">
-      <span>
-        <img src="../../../assets/search.png" alt />
-      </span>
+      <div class="status">
+        <span @click="dialog()">{{status}} <img src="../../../assets/xiala@2x.png" alt=""></span>
+      </div>
       <span class="title">闪叮咚欢迎您</span>
       <span>
         <img src="../../../assets/lianjie.png" alt />
@@ -100,6 +107,7 @@ export default {
   },
   data() {
     return {
+      isDialog:false,
       date: "7月", //展示
       year: "", //传给后台的年份
       month: "", //传给后台的月份
@@ -109,10 +117,22 @@ export default {
       unfinish:0,//待完成
       minDate: new Date(2020, 0, 1),
       maxDate: new Date(2025, 10, 1),
-      currentDate: new Date()
+      currentDate: new Date(),
+      status:'营业中'
     };
   },
   methods: {
+    statusClick(val){
+      if(val === 0){
+        this.status = '营业中'
+      }else if(val === 1){
+        this.status = '休息中'
+      }
+      this.isDialog = false
+    },
+    dialog(){
+      this.isDialog = true
+    },
     formatter(type, val) {
       if (type === "year") {
         return `${val}年`;
@@ -142,6 +162,32 @@ export default {
   width: 100%;
   height: 100%;
   overflow-x: hidden;
+  .dialog{
+    position: absolute;
+    background: #ffffff;
+    top: .45rem;
+    left: .32rem;
+    border-radius: .06rem;
+    i{
+      position: absolute;
+      top: -.04rem;
+      left: .1rem;
+      width: 0;
+      height: 0;
+      border-width: 0 .05rem .05rem;
+      border-style: solid;
+      border-color: transparent transparent #ffffff;
+    }
+    p{
+      padding: 0 .12rem;
+      font-size:.12rem;
+      font-family:PingFangSC-Regular,PingFang SC;
+      font-weight:400;
+      color:rgba(56,56,56,1);
+      line-height:.3rem;
+      height: .3rem;
+    }
+  }
   .header {
     height: 0.4rem;
     display: flex;
@@ -150,6 +196,18 @@ export default {
     box-sizing: border-box;
     align-items: center;
     border-bottom: 1px solid rgba(240, 240, 240, 1);
+    .status{
+      img{
+        width: .08rem;
+        height: .05rem;
+      }
+      span{
+        font-size:.12rem;
+        font-weight:400;
+        color:rgba(56,56,56,1);
+        line-height:.17rem;
+      }
+    }
     span {
       img {
         width: 0.175rem;

@@ -1,5 +1,6 @@
 <template>
   <div class="header">
+    <img src="../assets/back.png" alt="" @click="back()">
     <span>{{ title }}</span>
   </div>
 </template>
@@ -8,18 +9,13 @@
 export default {
   name: 'heard',
   props: {
-    msg: String
-  },
-  computed:{
-    title(){
-      return this.$store.state.home.title
-    }
+    title: String
   },
   mounted(){
   },
   methods:{
-    add(){
-      console.log(this.$store)
+    back(){
+      this.$router.go(-1)
     }
   }
 }
@@ -32,6 +28,16 @@ export default {
   top: 0;
   left: 0;
   right: 0;
+  text-align: center;
+  line-height: .4rem;
+  border-bottom: 1px solid #efefef;
+  img{
+    position: absolute;
+    bottom: .09rem;
+    left: .2rem;
+    width: .18rem;
+    height: .18rem;
+  }
   span{
     font-size: .2rem;
   }

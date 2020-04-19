@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="login">
     <p @click="login">登录页</p>
   </div>
 </template>

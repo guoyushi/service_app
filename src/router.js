@@ -2,10 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 // import api from './api/api'
 // import { getCookie } from '@/api/cookie'
-const originalPush = Router.prototype.push
-Router.prototype.push = function push(location) {
-  return originalPush.call(this, location).catch(err => err)
-}
+// const originalPush = Router.prototype.push
+// Router.prototype.push = function push(location) {
+//   return originalPush.call(this, location).catch(err => err)
+// }
 
 Vue.use(Router)
 const router = new Router({
@@ -16,6 +16,11 @@ const router = new Router({
       path: '/login',
 			name: 'login',
       component: () => import('./views/login/login.vue')
+    },
+    {
+      path:'/messageDetail',
+      name:'messageDetail',
+      component: () => import('./views/message/detail')
     },
     {
 			path: '/',
