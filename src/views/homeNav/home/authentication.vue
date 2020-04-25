@@ -15,7 +15,7 @@
             <span>提交身份认证</span>
           </div>
           <div class="right">
-            <span class="button">去认证</span>
+            <span class="button" @click="goAuthentication()">去认证</span>
           </div>
         </div>
       </div>
@@ -40,9 +40,9 @@ export default {
     return {};
   },
   methods: {
-    handleClick() {
+    goAuthentication() {
       this.$router.push({
-        path: "/home"
+        path: "/authentication_regiser"
       });
     }
   },
