@@ -11,7 +11,8 @@ export default {
   },
   methods: {
     login() {
-			this.$router.push('/')
+      sessionStorage.setItem('isAuthentication',false)
+			this.$router.push('/authentication')
 		}
   }
 };

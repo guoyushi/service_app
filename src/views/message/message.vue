@@ -1,6 +1,6 @@
 <template>
   <div class="message">
-    <Header title="我的消息"></Header>
+    <Header title="我的消息" :flag="false"></Header>
     <div class="content">
       <div class="item" @click="detail()">
         <img src="../../assets/msg.png" alt />

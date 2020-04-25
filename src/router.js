@@ -25,9 +25,13 @@ const router = new Router({
     {
 			path: '/',
       name: 'homeNav',
-      redirect:'home',
       component: () => import('./views/homeNav/index.vue'),
       children:[
+        {
+          path:'/authentication',
+          name:'authentication',
+          component: ()=> import('./views/homeNav/home/authentication.vue')
+        },
         {
           path: '/home',
           name: 'home',

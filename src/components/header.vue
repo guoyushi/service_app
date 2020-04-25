@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <img src="../assets/back.png" alt="" @click="back()">
+    <img src="../assets/back.png" alt="" @click="back()" v-if="flag">
     <span>{{ title }}</span>
   </div>
 </template>
@@ -9,7 +9,8 @@
 export default {
   name: 'heard',
   props: {
-    title: String
+    title: String,
+    flag: Boolean
   },
   mounted(){
   },
