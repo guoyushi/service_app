@@ -78,6 +78,24 @@ const router = new Router({
         }
       ]
     },
+    //服务页面首页
+    {
+      path:'/servePage',
+      name:'ServePage',
+      component: () => import('./views/servePage/index.vue')
+    },
+    //服务页面tab选择
+    {
+      path:'/serveTab',
+      name:'ServeTab',
+      component: () => import('./views/servePage/serve/serveTab')
+    },
+    //服务页面发布服务
+    {
+      path:'/ssue',
+      name:'Ssue',
+      component: () => import('./views/servePage/serve/ssue')
+    },
     {
       path: '*',
       component: () => import('./views/404.vue')
