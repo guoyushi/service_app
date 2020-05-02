@@ -13,7 +13,13 @@
           <span>{{item.number}}</span>
         </div>
       </div>
-      <div class="list">
+      <div class="no_list" v-if="list.length == 0">
+        <p>
+          <img src="../../assets/ding_huabanfuben.png" alt />
+        </p>
+        <p>您没有相关订单</p>
+      </div>
+      <div class="list" v-else>
         <div class="item" v-for="(item,index) in list" :key="index">
           <div class="top">
             <p>
@@ -116,8 +122,8 @@ export default {
     handleClick(item, index) {
       this.active = index;
     },
-    evaluate(){
-      console.log('评价')
+    evaluate() {
+      console.log("评价");
     }
   },
   components: {
@@ -135,7 +141,7 @@ export default {
   // 	}
   // }
   .orderTitle {
-    margin-top: .07rem;
+    margin-top: 0.07rem;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -160,20 +166,40 @@ export default {
       }
     }
   }
+  .no_list,
   .list {
     position: fixed;
-    bottom: .65rem;
-    top: .9rem;
+    bottom: 0.65rem;
+    top: 0.9rem;
     left: 0;
     right: 0;
     padding: 0 0.18rem 0 0.21rem;
+  }
+  .no_list {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    p {
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(163, 163, 163, 1);
+      line-height: 0.18rem;
+      img {
+        width: 0.57rem;
+        height: 0.68rem;
+        margin-bottom: .13rem;
+      }
+    }
+  }
+  .list {
     overflow-y: auto;
     .item {
       background: rgba(255, 255, 255, 1);
       box-shadow: 0px 0px 5px 0px rgba(77, 130, 249, 0.2);
       border-radius: 6px;
       padding: 0.16rem 0.16rem 0.2rem 0.1rem;
-      margin-top: .2rem;
+      margin-top: 0.2rem;
       .top {
         display: flex;
         justify-content: space-between;
@@ -240,16 +266,16 @@ export default {
           }
           .evaluate {
             position: absolute;
-            bottom: -.12rem;
+            bottom: -0.12rem;
             right: 0;
-            padding: .04rem .19rem;
-            border:1px solid #4984F9;
+            padding: 0.04rem 0.19rem;
+            border: 1px solid #4984f9;
             font-size: 0.12rem;
             font-weight: 400;
             color: rgba(56, 56, 56, 1);
             line-height: 17px;
-            border-radius: .06rem;
-            color: #4984F9;
+            border-radius: 0.06rem;
+            color: #4984f9;
           }
         }
       }
