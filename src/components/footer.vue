@@ -7,7 +7,7 @@
       @click="handleClick(item,index)"
       :class="index==active ? 'active' : ''"
     >
-      <img :src="index === active ? item.img : item.src" alt="">
+      <img v-if="item.img || item.src" :src="index === active ? item.img : item.src" alt="">
       <span>{{item.name}}</span>
     </div>
     
@@ -31,6 +31,10 @@ export default {
           name: "消息",
           img:require('../assets/xiaoxi4@2x.png'),
           src:require('../assets/xiaoxi3@2x.png')
+        },
+        {
+          path:'/message',
+          name: "+"
         },
         {
           path:'/order',
@@ -65,12 +69,13 @@ export default {
 </script>
 <style lang="less" scoped>
 .footer {
-  height: 0.55rem;
+  height: 0.65rem;
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   display: flex;
+  background: #ffffff;
   .item {
     flex: 1;
     display: flex;
@@ -87,6 +92,19 @@ export default {
       color: rgba(222, 222, 222, 1);
       line-height: 0.14rem;
       font-size: 0.1rem;
+    }
+    &:nth-child(3){
+      span{
+        position: relative;
+        top: -.05rem;
+        font-size: .24rem;
+        width: .38rem;
+        height: .38rem;
+        border-radius: 50%;
+        background: #4984F9;
+        text-align: center;
+        line-height: .38rem;
+      }
     }
   }
   .active {
