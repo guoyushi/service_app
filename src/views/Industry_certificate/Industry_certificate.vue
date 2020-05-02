@@ -47,7 +47,6 @@ export default {
     box-sizing: border-box;
     background: #ffffff;
     padding: 0 0.18rem 0 0.22rem;
-    overflow: hidden;
     .content {
       height: 0.5rem;
       line-height: 0.5rem;
