@@ -42,7 +42,7 @@ export default {
   methods: {
     goAuthentication() {
       this.$router.push({
-        path: "/authentication_regiser"
+        path: "/real_name_authentication"
       });
     }
   },

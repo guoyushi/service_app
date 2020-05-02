@@ -29,6 +29,18 @@ const router = new Router({
       name:'authentication_regiser',
       component: () => import('./views/authentication_regiser/authentication_regiser.vue')
     },
+    //实名认证
+    {
+      path:'/real_name_authentication',
+      name:'real_name_authentication',
+      component: () => import('./views/real_name_authentication/real_name_authentication.vue')
+    },
+    //行业证书认证
+    {
+      path:'/Industry_certificate',
+      name:'Industry_certificate',
+      component: () => import('./views/Industry_certificate/Industry_certificate.vue')
+    },
     {
 			path: '/',
       name: 'homeNav',

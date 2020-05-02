@@ -32,6 +32,7 @@ export default {
   text-align: center;
   line-height: .4rem;
   border-bottom: 1px solid #efefef;
+  background: #ffffff;
   img{
     position: absolute;
     bottom: .09rem;
