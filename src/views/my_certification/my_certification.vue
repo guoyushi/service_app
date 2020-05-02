@@ -5,7 +5,7 @@
       <div class="title">
         <p>身份认证</p>
       </div>
-      <div class="certification">
+      <div class="certification" @click="handleClick()">
         <div class="left">
           <img src="../../assets/shangjia.png" alt />
         </div>
@@ -15,7 +15,7 @@
           <p class="content">您可以选择微信认证或通过人脸识别进行实名认证，通过一项即代表通过个人身份认证</p>
         </div>
       </div>
-			<div class="certification">
+			<div class="certification" @click="handleClick('/authentication_regiser')">
         <div class="left">
           <img src="../../assets/geren.png" alt />
         </div>
@@ -28,7 +28,7 @@
       <div class="title">
         <p>行业认证</p>
       </div>
-			<div class="certification">
+			<div class="certification" @click="handleClick('/Industry_certificate')">
         <div class="left">
           <img src="../../assets/hangye.png" alt />
         </div>
@@ -50,7 +50,14 @@ export default {
   },
   data() {
     return {};
-  }
+	},
+	methods:{
+		handleClick(val){
+			this.$router.push({
+				path:val
+			})
+		}
+	}
 };
 </script>
 <style lang="less">
