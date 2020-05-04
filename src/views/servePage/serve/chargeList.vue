@@ -12,6 +12,18 @@
                     查看填写示例
                 </div>
             </div>
+            <div class="prizeList">
+                <div class="prizeListTiele">
+                    <span>项目</span>
+                    <span>价格</span>
+                    <span>计价单位</span>
+                </div>
+                <div class="chargeListDataDetail" v-for="(item, index) in chargeListData" :key="index">
+                    <input v-model="item.name" type="text" placeholder="请输入项目（30个字内）">
+                    <input v-model="item.prize" type="text" placeholder="价格">
+                    <input v-model="item.monad" type="text">
+                </div>
+            </div>
         </div>
 <!--        示例弹窗-->
         <van-popup v-model="messageShow">
@@ -29,6 +41,14 @@
                 <img @click="messageShow = false" src="../img/close.png" alt="">
             </div>
         </van-popup>
+        <!--类型选择-->
+        <van-popup v-model="istypeSelect" position="bottom" :style="{ height: '30%' }">
+            <div class="typeSelect">
+                <span>取消</span>
+                <span>选择计价规则</span>
+                <span>确认</span>
+            </div>
+        </van-popup>
     </div>
 </template>
 
@@ -42,6 +62,19 @@
     },
     data() {
       return {
+        chargeListData: [
+          {
+            name: '哇哈哈',
+            prize: '',
+            monad: '元/间'
+          },
+          {
+            name: '',
+            prize: '',
+            monad: ''
+          }
+        ],
+        istypeSelect: true,
         messageShow: false,
         giveData: [{
           name: '更换开关按钮',
@@ -151,6 +184,61 @@
         img{
             width: .4rem;
             height: .4rem;
+        }
+    }
+    .prizeListTiele{
+        font-size: .12rem;
+        font-weight:500;
+        color:rgba(51,51,51,1);
+        span{
+            display: inline-block;
+            height: .35rem;
+            text-align: center;
+            line-height: .35rem;
+        }
+        span:nth-child(1) {
+            width: 1.49rem;
+        }
+        span:nth-child(2) {
+            width: .48rem;
+        }
+        span:nth-child(3) {
+            width: .7rem;
+        }
+    }
+    .chargeListDataDetail{
+        margin-top: .1rem;
+        input{
+            height: .35rem;
+            background:rgba(243,244,246,1);
+            border-radius: .04rem;
+            opacity:0.8;
+            font-size: .12rem;
+            font-weight:600;
+            text-align: center;
+        }
+        input:nth-child(1) {
+            width: 1.49rem;
+        }
+        input:nth-child(2) {
+            width: .48rem;
+            margin-left: .1rem;
+        }
+        input:nth-child(3) {
+            width: .7rem;
+            margin-left: .1rem;
+        }
+    }
+    .typeSelect{
+        background: #ffffff;
+        padding: .15rem;
+        height: 1.7rem;
+        color: red;
+        font-size: .12rem;
+        display: flex;
+        justify-content: space-between;
+        span:nth-child(2) {
+            color: #000000;
         }
     }
 </style>
