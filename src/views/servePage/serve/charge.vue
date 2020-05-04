@@ -22,7 +22,7 @@
                         服务收费
                         <span>按价目表收费</span>
                     </span>
-                    <span class="serveDescribeListChildTwo">未编辑 <img src="../img/jtRight.png" alt=""></span>
+                    <span @click="toChargeList" class="serveDescribeListChildTwo">未编辑 <img src="../img/jtRight.png" alt=""></span>
                 </div>
                 <div class="serveDescribeList">
                     <span class="serveDescribeListChild">空跑是否收取上门费</span>
@@ -31,6 +31,28 @@
                         <div v-show="!isCharge" @click="isCharge = true" class="isChargeFalse"></div>
                     </div>
                 </div>
+            </div>
+            <div class="serveDescribe" v-show="isCharge" >
+                <div class="serveDescribeList">
+                    <span class="serveDescribeListChild">
+                        何时收取上门费
+                    </span>
+                    <span class="serveDescribeListChildTwo">上门后客户原因而取消 <img src="../img/jtRight.png" alt=""></span>
+                </div>
+                <div class="serveDescribeList">
+                    <span class="serveDescribeListChild">上门费</span>
+                    <span>
+                        <input
+                        class="prizeInput"
+                        placeholder="请输入价格"
+                        maxlength="8"
+                        oninput="this.value=this.value.replace(/[^\d.]/g,'')"
+                        >
+                    </span>
+                </div>
+            </div>
+            <div class="chargeText">
+                请提前与客户沟通您的收费明细，在服务人员上门后（系统以输入签到 码为准），如果因客户原因而导致取消订单，您有权去上门费。
             </div>
         </div>
     </div>
@@ -46,6 +68,14 @@
     data () {
       return {
         isCharge: true
+      }
+    },
+    methods: {
+      // 服务收费
+      toChargeList() {
+          this.$router.push({
+            path: '/chargeList'
+          })
       }
     }
   }
@@ -206,5 +236,17 @@
         height: .19rem;
         border-radius: 50%;
         background: #cccccc;
+    }
+    .prizeInput{
+        width: 1rem;
+        font-size: .14rem;
+        font-weight:500;
+        color:rgba(51,51,51,1);
+    }
+    .chargeText{
+        font-size: .1rem;
+        font-weight:400;
+        color:rgba(195,197,205,1);
+        padding: .2rem;
     }
 </style>

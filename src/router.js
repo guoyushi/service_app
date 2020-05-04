@@ -115,6 +115,11 @@ const router = new Router({
       component: () => import('./views/servePage/serve/charge.vue')
     },
     {
+      path:'/chargeList',
+      name:'chargeList',
+      component: () => import('./views/servePage/serve/chargeList.vue')
+    },
+    {
       path: '*',
       component: () => import('./views/404.vue')
     }
