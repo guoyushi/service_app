@@ -21,7 +21,11 @@
           <div class="serveDescribe">
               <div class="serveDescribeList">
                   <span class="serveDescribeListChild">服务描述</span>
-                  <span class="serveDescribeListChildTwo">未编辑 <img src="../img/jtRight.png" alt=""></span>
+                  <span @click="toDescription" class="serveDescribeListChildTwo">
+<!--                      <span class="successSapn" v-if="isDescription">已编辑</span>-->
+                      <span>未编辑</span>
+                      <img src="../img/jtRight.png" alt="">
+                  </span>
                   <div class="sanjiao" v-if="isHint"></div>
                   <div class="hint" v-if="isHint">
                       服务描述越清晰，越多的用户下单哦
@@ -30,7 +34,7 @@
               </div>
               <div class="serveDescribeList">
                   <span class="serveDescribeListChild">服务收费</span>
-                  <span class="serveDescribeListChildTwo">未编辑 <img src="../img/jtRight.png" alt=""></span>
+                  <span @click="toCharge" class="serveDescribeListChildTwo">未编辑 <img src="../img/jtRight.png" alt=""></span>
               </div>
           </div>
           <div class="serveDescribe">
@@ -60,6 +64,7 @@
     },
     data () {
       return {
+        description: '', // 服务描述
         isHint: true,
         newName: '',
         describe: '', // 描述
@@ -67,9 +72,25 @@
       }
     },
     mounted() {
+      this.description = this.$route.query.description
       this.newName = sessionStorage.getItem('newName')
     },
     methods: {
+      // 编辑服务描述
+      toDescription() {
+        this.$router.push({
+          path: '/description',
+          query: {
+            description: this.description
+          }
+        })
+      },
+      // 服务收费
+      toCharge() {
+        this.$router.push({
+          path: '/charge'
+        })
+      }
     }
   }
 </script>
@@ -197,5 +218,10 @@
         font-weight:400;
         color:rgba(167,167,167,1);
         margin-top: .1rem;
+    }
+    .successSapn{
+        font-size:.12rem;
+        font-weight:400;
+        color:rgba(51,51,51,1);
     }
 </style>

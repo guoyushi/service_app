@@ -102,6 +102,18 @@ const router = new Router({
       name:'Ssue',
       component: () => import('./views/servePage/serve/ssue')
     },
+    //服务描述
+    {
+      path:'/description',
+      name:'description',
+      component: () => import('./views/servePage/serve/description.vue')
+    },
+    //服务描述
+    {
+      path:'/charge',
+      name:'charge',
+      component: () => import('./views/servePage/serve/charge.vue')
+    },
     {
       path: '*',
       component: () => import('./views/404.vue')
