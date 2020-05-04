@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="authentication_regiser">
     <Header title="企业/个体商户注册" :flag="true"></Header>
     <div class="individual_enterprise">
       <p class="tips">请选择营业执照类型（非个体商户均选“企业公司”）</p>
@@ -20,55 +20,60 @@
           :key="index"
         >{{item.name}}</span>
       </div>
-      <div class="individual_or_enterprise">
-        <div class="upload">
-          <p class="title">授权书</p>
-          <p class="content">请参照示例内容自行打印或手写，加盖公章后拍照上传清楚可见</p>
-          <div class="fileList">
-            <van-uploader v-model="fileList" multiple />
+      <div v-if="isShow">
+        <div class="individual_or_enterprise">
+          <div class="upload"  v-if="noLegaPperson">
+            <p class="title">授权书</p>
+            <p class="content">请参照示例内容自行打印或手写，加盖公章后拍照上传清楚可见</p>
+            <div class="fileList">
+              <van-uploader v-model="fileList" multiple />
+            </div>
+          </div>
+          <div class="upload">
+            <p class="title">上传营业执照照片</p>
+            <p class="content">请确保证号完整、印章、文字、照片均清楚可见</p>
+            <div class="fileList">
+              <van-uploader v-model="licenseFileList" multiple />
+            </div>
           </div>
         </div>
-        <div class="upload">
-          <p class="title">上传营业执照照片</p>
-          <p class="content">请确保证号完整、印章、文字、照片均清楚可见</p>
-          <div class="fileList">
-            <van-uploader v-model="licenseFileList" multiple />
-          </div>
+        <div class="license_information">
+          <van-cell-group>
+            <van-field v-model="licenseName" label="营业执照名称" placeholder="无名请填写经营者姓名" />
+            <van-field v-model="code" label="统一社会信用代码" placeholder="或营业执照注册号" />
+          </van-cell-group>
+          <van-cell title="营业执照所在地" is-link />
         </div>
-      </div>
-      <div class="license_information">
-        <van-cell-group>
-          <van-field v-model="licenseName" label="营业执照名称" placeholder="无名请填写经营者姓名" />
-          <van-field v-model="code" label="统一社会信用代码" placeholder="或营业执照注册号" />
-        </van-cell-group>
-        <van-cell title="营业执照所在地" is-link />
-      </div>
-      <p class="tips">执照有效日期</p>
-      <div class="button">
-        <span
-          @click="handleClickDates(item,index)"
-          :class="{'active':index==activeDates}"
-          v-for="(item,index) in dates"
-          :key="index"
-        >{{item.name}}</span>
-      </div>
-      <div class="date_content">
-        <van-cell-group>
-          <van-cell title="有效期至" is-link :value="date" @click="selectDate" />
-          <van-field v-model="licenseName" label="法人姓名" placeholder="请输入姓名" />
-          <van-field v-model="code" label="法人身份证号" placeholder="请输入身份证号" />
-        </van-cell-group>
+        <p class="tips">执照有效日期</p>
+        <div class="button">
+          <span
+            @click="handleClickDates(item,index)"
+            :class="{'active':index==activeDates}"
+            v-for="(item,index) in dates"
+            :key="index"
+          >{{item.name}}</span>
+        </div>
+        <div class="date_content">
+          <van-cell-group>
+            <van-cell title="有效期至" is-link :value="date" @click="selectDate" />
+            <van-field v-model="licenseName" label="法人姓名" placeholder="请输入姓名" />
+            <van-field v-model="code" label="法人身份证号" placeholder="请输入身份证号" />
+          </van-cell-group>
+        </div>
+        <div class="submit">
+          <p>提交审核</p>
+        </div>
       </div>
     </div>
     <div class="date" v-if="isDate">
       <van-datetime-picker
-      v-model="currentDate"
-      type="date"
-      :min-date="minDate"
-      :max-date="maxDate"
-      @confirm="confirm"
-      @cancel="cancel"
-    />
+        v-model="currentDate"
+        type="date"
+        :min-date="minDate"
+        :max-date="maxDate"
+        @confirm="confirm"
+        @cancel="cancel"
+      />
     </div>
   </div>
 </template>
@@ -78,6 +83,8 @@ export default {
   name: "authentication_regiser",
   data() {
     return {
+      noLegaPperson:false,//是否是法人
+      isShow: false,
       isDate: false,
       date: "", //有效期
       licenseName: "", //营业执照
@@ -89,10 +96,8 @@ export default {
       minDate: new Date(2020, 0, 1),
       maxDate: new Date(2025, 10, 1),
       currentDate: new Date(),
-      licenseFileList:[],
-      fileList: [
-        { url: 'https://img.yzcdn.cn/vant/leaf.jpg' }
-      ],
+      licenseFileList: [],
+      fileList: [{ url: "https://img.yzcdn.cn/vant/leaf.jpg" }],
       list: [
         {
           name: "个体商户",
@@ -130,23 +135,25 @@ export default {
   },
   methods: {
     formatTen(num) {
-      return num > 9 ? (num + "") : ("0" + num);
+      return num > 9 ? num + "" : "0" + num;
     },
     formatDate(dates) {
-      var date = new Date(dates)
+      var date = new Date(dates);
       var year = date.getFullYear();
       var month = date.getMonth() + 1;
       var day = date.getDate();
-      return year + "年" + this.formatTen(month) + "月" + this.formatTen(day) + "日";
+      return (
+        year + "年" + this.formatTen(month) + "月" + this.formatTen(day) + "日"
+      );
     },
-    cancel(){
-      this.isDate = false
+    cancel() {
+      this.isDate = false;
     },
-    confirm(){
-      console.log(this.currentDate)
-      this.date = this.formatDate(this.currentDate)
+    confirm() {
+      console.log(this.currentDate);
+      this.date = this.formatDate(this.currentDate);
       // this.date = this.currentDate
-      this.isDate = false
+      this.isDate = false;
     },
     //日期选择
     selectDate() {
@@ -158,6 +165,13 @@ export default {
     },
     //是否是法人
     handleClicks(item, index) {
+      if(item.type === 1){
+        this.noLegaPperson = true
+        this.isShow = true;
+      }else{
+        this.noLegaPperson = false
+        this.isShow = true;
+      }
       this.actives = index;
     },
     //个体商户/企业公司
@@ -165,19 +179,28 @@ export default {
       this.active = index;
       if (item.type === 1) {
         this.flag = true;
+        this.isShow = false;
+        this.actives = null
       } else {
         this.flag = false;
+        this.isShow = true;
+        this.noLegaPperson = false
       }
     }
   }
 };
 </script>
 <style lang="less">
-.individual_enterprise {
+.authentication_regiser{
+  height: 100%;
+  overflow-y: hidden;
+  .individual_enterprise {
   margin-top: 0.4rem;
   box-sizing: border-box;
   overflow-y: auto;
+  height: 100%;
   background: #ffffff;
+  padding-bottom: .63rem;
   .tips {
     padding: 0.2rem 0.28rem 0.1rem 0.22rem;
     font-size: 0.14rem;
@@ -232,12 +255,12 @@ export default {
         color: rgba(102, 102, 102, 1);
         line-height: 0.17rem;
       }
-      .fileList{
-        margin-top: .1rem;
-        background:rgba(255,255,255,1);
-        box-shadow:0px 0px 5px 0px rgba(77,130,249,0.2);
-        border-radius:6px;
-        padding: .1rem .1rem .18rem .1rem;
+      .fileList {
+        margin-top: 0.1rem;
+        background: rgba(255, 255, 255, 1);
+        box-shadow: 0px 0px 5px 0px rgba(77, 130, 249, 0.2);
+        border-radius: 6px;
+        padding: 0.1rem 0.1rem 0.18rem 0.1rem;
         box-sizing: border-box;
       }
     }
@@ -263,7 +286,20 @@ export default {
       line-height: 0.6rem;
     }
   }
-  .date_content {
+  .submit{
+    padding: 0 .18rem 0 .22rem;
+    margin-top: .2rem;
+    box-sizing: border-box;
+    p{
+      height:.4rem;
+      background:linear-gradient(226deg,rgba(77,130,249,1) 0%,rgba(73,132,249,1) 100%);
+      border-radius:4px;
+      line-height: .4rem;
+      text-align: center;
+      font-size:.16rem;
+      font-weight:500;
+      color:rgba(255,255,255,1);
+    }
   }
 }
 .date {
@@ -272,4 +308,6 @@ export default {
   left: 0;
   right: 0;
 }
+}
+
 </style>

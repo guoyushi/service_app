@@ -41,6 +41,12 @@ const router = new Router({
       name:'Industry_certificate',
       component: () => import('./views/Industry_certificate/Industry_certificate.vue')
     },
+    //我的认证
+    {
+      path:'/my_certification',
+      name:'my_certification',
+      component: () => import('./views/my_certification/my_certification.vue')
+    },
     {
 			path: '/',
       name: 'homeNav',
