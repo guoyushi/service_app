@@ -19,12 +19,28 @@
                     <span>计价单位</span>
                 </div>
                 <div class="chargeListDataDetail" v-for="(item, index) in chargeListData" :key="index">
-                    <input v-model="item.name" type="text" placeholder="请输入项目（30个字内）">
-                    <input v-model="item.prize" type="text" placeholder="价格">
-                    <input v-model="item.monad" type="text">
+                    <input class="input1" v-model="item.name" type="text" placeholder="请输入项目（30个字内）">
+                    <input class="input2" v-model="item.prize" type="text" placeholder="价格">
+                    <div @click="selectPrize(index)">
+                        <div>{{item.monad}}</div>
+                        <img class="xsj" src="../img/xsj.png" alt="">
+                    </div>
+                    <img @click="pushItem" v-if="index == chargeListData.length - 1" class="jia" src="../img/jia.png" alt="">
+                    <img @click="deleteItem(index)" v-else class="jian" src="../img/jian.png" alt="">
                 </div>
             </div>
         </div>
+<!--        计价单位-->
+        <van-popup v-model="showPrize" position="bottom">
+            <van-picker
+                    title="选择计价规则"
+                    show-toolbar
+                    :columns="columns"
+                    @confirm="onConfirm"
+                    @cancel="onCancel"
+                    @change="onChange"
+            />
+        </van-popup>
 <!--        示例弹窗-->
         <van-popup v-model="messageShow">
             <div class="message">
@@ -41,20 +57,12 @@
                 <img @click="messageShow = false" src="../img/close.png" alt="">
             </div>
         </van-popup>
-        <!--类型选择-->
-        <van-popup v-model="istypeSelect" position="bottom" :style="{ height: '30%' }">
-            <div class="typeSelect">
-                <span>取消</span>
-                <span>选择计价规则</span>
-                <span>确认</span>
-            </div>
-        </van-popup>
     </div>
 </template>
 
 <script>
   import Header from "@/components/header"
-  import { Popup } from 'vant'
+  import { Popup, Picker } from 'vant'
   export default {
     name: "chargeList",
     components: {
@@ -62,6 +70,10 @@
     },
     data() {
       return {
+        showPrize: false,
+        prizeType: '',
+        prizeIndex: 0,
+        columns: ['杭州', '宁波', '温州', '嘉兴', '湖州'],
         chargeListData: [
           {
             name: '哇哈哈',
@@ -71,10 +83,9 @@
           {
             name: '',
             prize: '',
-            monad: ''
+            monad: '请选择'
           }
         ],
-        istypeSelect: true,
         messageShow: false,
         giveData: [{
           name: '更换开关按钮',
@@ -102,6 +113,39 @@
           value: 260
         }]
 
+      }
+    },
+    methods: {
+      onConfirm(value, index) {
+        this.prizeType = value
+        this.showPrize = false
+        this.chargeListData[this.prizeIndex].monad = this.prizeType
+        // Toast(`当前值：${value}, 当前索引：${index}`);
+      },
+      onChange(picker, value, index) {
+        // Toast(`当前值：${value}, 当前索引：${index}`);
+      },
+      onCancel() {
+        this.showPrize = false
+      },
+      // 选择分类
+      selectPrize(index) {
+        this.showPrize = true
+        this.prizeIndex = index
+      },
+      // 增加
+      pushItem() {
+        var data = {
+          name: '',
+          prize: '',
+          monad: '请选择'
+        }
+        this.chargeListData.push(data)
+      },
+      // 删除列表某一项
+      deleteItem(index) {
+        this.chargeListData.splice(index, 1)
+        console.log(this.chargeListData)
       }
     }
   }
@@ -186,6 +230,12 @@
             height: .4rem;
         }
     }
+    .prizeList{
+        background:rgba(255,255,255,1);
+        box-shadow:0 0 .05rem 0 rgba(77,130,249,0.2);
+        border-radius: .06rem;
+        padding: 0 .1rem .1rem .1rem;
+    }
     .prizeListTiele{
         font-size: .12rem;
         font-weight:500;
@@ -207,6 +257,9 @@
         }
     }
     .chargeListDataDetail{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         margin-top: .1rem;
         input{
             height: .35rem;
@@ -217,16 +270,35 @@
             font-weight:600;
             text-align: center;
         }
-        input:nth-child(1) {
+        .input1{
             width: 1.49rem;
         }
-        input:nth-child(2) {
+        .input2 {
             width: .48rem;
             margin-left: .1rem;
         }
-        input:nth-child(3) {
+        div{
             width: .7rem;
-            margin-left: .1rem;
+            position: relative;
+            div{
+                width: .7rem;
+                margin-left: .1rem;
+                height: .35rem;
+                line-height: .35rem;
+                background:rgba(243,244,246,1);
+                border-radius: .04rem;
+                opacity:0.8;
+                font-size: .12rem;
+                font-weight:600;
+                text-align: center;
+            }
+            .xsj{
+                width: .1rem;
+                height: .08rem;
+                position: absolute;
+                right: -.05rem;
+                bottom: .12rem;
+            }
         }
     }
     .typeSelect{
@@ -240,5 +312,15 @@
         span:nth-child(2) {
             color: #000000;
         }
+    }
+    .jian{
+        width: .16rem;
+        height: .16rem;
+        margin-left: .1rem;
+    }
+    .jia{
+        width: .16rem;
+        height: .16rem;
+        margin-left: .1rem;
     }
 </style>
