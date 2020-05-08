@@ -6,7 +6,7 @@
             <div class="chargeName">
                 <div class="chargeNameData">啦啦啦啦啦</div>
             </div>
-            <div class="specification">
+            <div class="specification" @click="toServeRule">
                 <div>
                     服务规则
                     <span>(选填)</span>
@@ -71,6 +71,12 @@
       }
     },
     methods: {
+      // 服务规则
+      toServeRule() {
+        this.$router.push({
+          path: '/serveRule'
+        })
+      },
       // 服务收费
       toChargeList() {
           this.$router.push({

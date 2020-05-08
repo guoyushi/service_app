@@ -119,6 +119,12 @@ const router = new Router({
       name:'chargeList',
       component: () => import('./views/servePage/serve/chargeList.vue')
     },
+    // 服务规则
+    {
+      path:'/serveRule',
+      name:'serveRule',
+      component: () => import('./views/servePage/serve/serveRule.vue')
+    },
     {
       path: '*',
       component: () => import('./views/404.vue')

@@ -30,6 +30,15 @@
                 </div>
             </div>
         </div>
+        <div class="addRemark">
+            <div class="addRemarkTitle">
+                添加备注
+            </div>
+            <div class="textarea">
+                <textarea maxlength="200" v-model="descriptionData" contenteditable="true" placeholder="您可按实际情况对价目表进行补充说明。如：起步价、套餐价等。"></textarea>
+                <div class="sizeLength">{{descriptionData.length}}/200</div>
+            </div>
+        </div>
 <!--        计价单位-->
         <van-popup v-model="showPrize" position="bottom">
             <van-picker
@@ -70,6 +79,7 @@
     },
     data() {
       return {
+        descriptionData: '',
         showPrize: false,
         prizeType: '',
         prizeIndex: 0,
@@ -231,6 +241,7 @@
         }
     }
     .prizeList{
+        margin-top: .1rem;
         background:rgba(255,255,255,1);
         box-shadow:0 0 .05rem 0 rgba(77,130,249,0.2);
         border-radius: .06rem;
@@ -322,5 +333,35 @@
         width: .16rem;
         height: .16rem;
         margin-left: .1rem;
+    }
+    .textarea{
+        margin-top: .1rem;
+        padding: .18rem .12rem;
+        font-size: .12rem;
+        font-weight:400;
+        color:rgba(56,56,56,1);
+        height:112px;
+        background:rgba(255,255,255,1);
+        box-shadow:0 0 .05rem 0 rgba(77,130,249,0.2);
+        border-radius: .06rem;
+        textarea{
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .addRemark{
+        padding: 0 .2rem;
+        margin-top: .2rem;
+    }
+    .addRemarkTitle{
+        font-size: .14rem;
+        font-weight:500;
+        color:rgba(51,51,51,1);
+    }
+    .sizeLength{
+        text-align: right;
+        font-size:.12rem;
+        font-weight:bold;
+        color:rgba(195,197,205,1);
     }
 </style>
