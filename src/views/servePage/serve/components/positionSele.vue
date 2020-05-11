@@ -24,7 +24,7 @@
     methods: {
       toSite() {
         this.$router.push({
-          path: '/site'
+          path: '/cityChoose'
         })
       }
     }

@@ -143,10 +143,11 @@ const router = new Router({
       name:'cityList',
       component: () => import('./views/servePage/serve/cityList')
     },
+    // 城市列表选择页
     {
-      path:'/aa',
-      name:'aa',
-      component: () => import('./views/cityChoose/cityChoose')
+      path:'/cityChoose',
+      name:'cityChoose',
+      component: () => import('./views/servePage/serve/cityChoose')
     },
     {
       path: '*',

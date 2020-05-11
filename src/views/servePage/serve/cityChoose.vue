@@ -5,7 +5,7 @@
   </div>
 </template>
 <script>
-import cities from '../../../static/city.json'
+import cities from '../json/city.json'
 import cityList from './components/cityList'
 import cityAlphaber from './components/cityAlphaber'
 
