@@ -137,6 +137,12 @@ const router = new Router({
       name:'site',
       component: () => import('./views/servePage/serve/site')
     },
+    // 城市列表
+    {
+      path:'/cityList',
+      name:'cityList',
+      component: () => import('./views/servePage/serve/cityList')
+    },
     {
       path: '*',
       component: () => import('./views/404.vue')

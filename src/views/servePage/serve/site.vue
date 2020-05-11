@@ -6,7 +6,7 @@
                 地址将作为上门服务的中心点，或到店服务的门店地址。当前服务范围为20公里，如需变更，点击修改
             </div>
             <div class="wrapChiled">
-                <div class="stieCity">
+                <div class="stieCity" @click="toCityList">
                     <div class="stieCityLeft">所在城市</div>
                     <div class="stieCityRight">
                         <span>所在城市</span>
@@ -26,18 +26,11 @@
                 </div>
             </div>
         </div>
-        <van-index-bar>
-            <van-index-anchor v-for="(item, index) in city" index="A" :key="index">
-                {{item}}
-            </van-index-anchor>
-        </van-index-bar>
     </div>
 </template>
 
 <script>
   import Header from "@/components/header"
-  import { cityJson } from '../json/city'
-  import { IndexBar, IndexAnchor } from 'vant';
   export default {
     name: "site",
     components: {
@@ -45,11 +38,17 @@
     },
     data () {
       return {
-        city: cityJson.data.cities,
       }
     },
     mounted() {
       console.log(this.city)
+    },
+    methods: {
+      toCityList() {
+        this.$router.push({
+          path: 'cityList'
+        })
+      }
     }
   }
 </script>
