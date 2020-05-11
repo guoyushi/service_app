@@ -144,6 +144,11 @@ const router = new Router({
       component: () => import('./views/servePage/serve/cityList')
     },
     {
+      path:'/aa',
+      name:'aa',
+      component: () => import('./views/cityChoose/cityChoose')
+    },
+    {
       path: '*',
       component: () => import('./views/404.vue')
     }
