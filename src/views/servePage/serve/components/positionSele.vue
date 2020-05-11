@@ -7,7 +7,7 @@
                 <p>暂无服务地址</p>
                 <P>为了用户能够查看到你，请添加服务地址～</P>
                 <div>
-                    <p>新增地址</p>
+                    <p @click="toSite">新增地址</p>
                 </div>
             </div>
         </div>
@@ -20,6 +20,13 @@
     name: "positionSele",
     components: {
       Header
+    },
+    methods: {
+      toSite() {
+        this.$router.push({
+          path: '/site'
+        })
+      }
     }
   }
 </script>

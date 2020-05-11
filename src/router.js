@@ -131,6 +131,12 @@ const router = new Router({
       name:'positionSele',
       component: () => import('./views/servePage/serve/components/positionSele')
     },
+    // 选择地址
+    {
+      path:'/site',
+      name:'site',
+      component: () => import('./views/servePage/serve/site')
+    },
     {
       path: '*',
       component: () => import('./views/404.vue')
