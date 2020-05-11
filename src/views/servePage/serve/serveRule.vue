@@ -8,7 +8,7 @@
                 <div class="serveData">
                     <div @click="isCheckoutServe(index)" class="serveDataList" v-for="(item, index) in serveData" :key="index">
                         {{item.name}}
-                        <img v-if="item.isCheck" src="../img/questionIcon.png" alt="">
+                        <img v-if="item.isCheck" src="../img/bcheck.png" alt="">
                     </div>
                 </div>
                 <div class="serveRuleTitle">组合（如果不支持某种组合，可取消勾选）</div>
@@ -101,7 +101,7 @@
                 width: .15rem;
                 height: .15rem;
                 position: absolute;
-                right: 0;
+                right: -.01rem;
                 bottom: 0;
             }
         }

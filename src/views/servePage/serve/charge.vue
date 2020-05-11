@@ -26,7 +26,7 @@
                 </div>
                 <div class="serveDescribeList">
                     <span class="serveDescribeListChild">空跑是否收取上门费</span>
-                    <div class="isChargeBox">
+                    <div :class="isCharge == true ? 'isChargeBox' : 'isChargeBoxs'">
                         <div v-show="isCharge" @click="isCharge = false" class="isChargeTrue"></div>
                         <div v-show="!isCharge" @click="isCharge = true" class="isChargeFalse"></div>
                     </div>
@@ -228,7 +228,15 @@
         padding: .01rem;
         display: flex;
         justify-content: space-between;
-
+    }
+    .isChargeBoxs{
+        width: .33rem;
+        height: .19rem;
+        background: #cccccc;
+        border-radius: .9rem;
+        padding: .01rem;
+        display: flex;
+        justify-content: space-between;
     }
     .isChargeTrue{
         width: .19rem;
@@ -241,7 +249,7 @@
         width: .19rem;
         height: .19rem;
         border-radius: 50%;
-        background: #cccccc;
+        background: #ffffff;
     }
     .prizeInput{
         width: 1rem;

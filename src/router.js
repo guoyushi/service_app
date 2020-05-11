@@ -125,6 +125,12 @@ const router = new Router({
       name:'serveRule',
       component: () => import('./views/servePage/serve/serveRule.vue')
     },
+    // 选择地址
+    {
+      path:'/positionSele',
+      name:'positionSele',
+      component: () => import('./views/servePage/serve/components/positionSele')
+    },
     {
       path: '*',
       component: () => import('./views/404.vue')
