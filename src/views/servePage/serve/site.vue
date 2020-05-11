@@ -26,15 +26,30 @@
                 </div>
             </div>
         </div>
+        <van-index-bar>
+            <van-index-anchor v-for="(item, index) in city" index="A" :key="index">
+                {{item}}
+            </van-index-anchor>
+        </van-index-bar>
     </div>
 </template>
 
 <script>
   import Header from "@/components/header"
+  import { cityJson } from '../json/city'
+  import { IndexBar, IndexAnchor } from 'vant';
   export default {
     name: "site",
     components: {
       Header
+    },
+    data () {
+      return {
+        city: cityJson.data.cities,
+      }
+    },
+    mounted() {
+      console.log(this.city)
     }
   }
 </script>
