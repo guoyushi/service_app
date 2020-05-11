@@ -7,9 +7,12 @@
             </div>
             <div class="wrapChiled">
                 <div class="stieCity" @click="toCityList">
-                    <div class="stieCityLeft">所在城市</div>
+                    <div class="stieCityLeft">
+                        所在城市
+                    </div>
                     <div class="stieCityRight">
-                        <span>所在城市</span>
+                        <span v-if="siteName">{{siteName}}</span>
+                        <span v-else>所在城市</span>
                         <img src="../img/jtRight.png" alt="">
                     </div>
                 </div>
@@ -38,15 +41,16 @@
     },
     data () {
       return {
+        siteName: ''
       }
     },
     mounted() {
-      console.log(this.city)
+      this.siteName = this.$route.query.siteName
     },
     methods: {
       toCityList() {
-        this.$router.push({
-          path: 'cityList'
+        this.$router.replace({
+          path: 'cityChoose'
         })
       }
     }
