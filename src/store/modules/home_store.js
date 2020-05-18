@@ -1,6 +1,6 @@
 export default {
     state:{
-        title:"到位"
+        title:"闪叮咚"
     },
     mutations:{
 

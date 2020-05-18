@@ -11,45 +11,11 @@ Vue.use(Router)
 const router = new Router({
   // mode: 'history',
   // base: process.env.BASE_URL,
-  routes: [
-    {
-      path: '/login',
-			name: 'login',
-      component: () => import('./views/login/login.vue')
-    },
-    {
-			path: '/',
-      name: 'homeNav',
-      redirect:'home',
-      component: () => import('./views/homeNav/index.vue'),
-      children:[
-        {
-          path: '/home',
-          name: 'home',
-          component: () => import('./views/homeNav/home/home.vue')
-        },
-        {
-          path: '/order',
-          name: 'order',
-          component: () => import('./views/order/order.vue')
-        },
-        {
-          path: '/my',
-          name: 'my',
-          component: () => import('./views/my/my.vue')
-        },
-        {
-          path: '/categroy',
-          name: 'categroy',
-          component: () => import('./views/categroy/categroy.vue')
-        }
-      ]
-    },
-    {
-      path: '*',
-      component: () => import('./views/404.vue')
-    }
-  ]
+  routes: [{
+    path: '/home',
+    name: 'home',
+    component: () => import('./views/homeNav/index.vue')
+  }]
 })
 // router.beforeEach((to, from, next) => {
 //   let url = document.location.href
