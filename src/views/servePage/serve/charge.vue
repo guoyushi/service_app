@@ -6,7 +6,7 @@
             <div class="chargeName">
                 <div class="chargeNameData">啦啦啦啦啦</div>
             </div>
-            <div class="specification">
+            <div class="specification" @click="toServeRule">
                 <div>
                     服务规则
                     <span>(选填)</span>
@@ -26,7 +26,7 @@
                 </div>
                 <div class="serveDescribeList">
                     <span class="serveDescribeListChild">空跑是否收取上门费</span>
-                    <div class="isChargeBox">
+                    <div :class="isCharge == true ? 'isChargeBox' : 'isChargeBoxs'">
                         <div v-show="isCharge" @click="isCharge = false" class="isChargeTrue"></div>
                         <div v-show="!isCharge" @click="isCharge = true" class="isChargeFalse"></div>
                     </div>
@@ -71,6 +71,12 @@
       }
     },
     methods: {
+      // 服务规则
+      toServeRule() {
+        this.$router.push({
+          path: '/serveRule'
+        })
+      },
       // 服务收费
       toChargeList() {
           this.$router.push({
@@ -222,7 +228,15 @@
         padding: .01rem;
         display: flex;
         justify-content: space-between;
-
+    }
+    .isChargeBoxs{
+        width: .33rem;
+        height: .19rem;
+        background: #cccccc;
+        border-radius: .9rem;
+        padding: .01rem;
+        display: flex;
+        justify-content: space-between;
     }
     .isChargeTrue{
         width: .19rem;
@@ -235,7 +249,7 @@
         width: .19rem;
         height: .19rem;
         border-radius: 50%;
-        background: #cccccc;
+        background: #ffffff;
     }
     .prizeInput{
         width: 1rem;

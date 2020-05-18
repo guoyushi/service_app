@@ -123,6 +123,36 @@ const router = new Router({
       name: 'chargeList',
       component: () => import('./views/servePage/serve/chargeList.vue')
     },
+    // 服务规则
+    {
+      path:'/serveRule',
+      name:'serveRule',
+      component: () => import('./views/servePage/serve/serveRule.vue')
+    },
+    // 选择地址
+    {
+      path:'/positionSele',
+      name:'positionSele',
+      component: () => import('./views/servePage/serve/components/positionSele')
+    },
+    // 选择地址
+    {
+      path:'/site',
+      name:'site',
+      component: () => import('./views/servePage/serve/site')
+    },
+    // 城市列表
+    {
+      path:'/cityList',
+      name:'cityList',
+      component: () => import('./views/servePage/serve/cityList')
+    },
+    // 城市列表选择页
+    {
+      path:'/cityChoose',
+      name:'cityChoose',
+      component: () => import('./views/servePage/serve/cityChoose')
+    },
     {
       path: '*',
       component: () => import('./views/404.vue')

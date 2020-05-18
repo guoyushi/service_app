@@ -42,7 +42,7 @@
                   <span class="serveDescribeListChild">接单类型</span>
                   <span class="serveDescribeListChildTwo">未编辑 <img src="../img/jtRight.png" alt=""></span>
               </div>
-              <div class="serveDescribeList">
+              <div class="serveDescribeList" @click="toPositionSele">
                   <span class="serveDescribeListChild">服务范围</span>
                   <span class="serveDescribeListChildTwo">未编辑 <img src="../img/jtRight.png" alt=""></span>
               </div>
@@ -89,6 +89,12 @@
       toCharge() {
         this.$router.push({
           path: '/charge'
+        })
+      },
+      // 去地址选择
+      toPositionSele() {
+        this.$router.push({
+          path: '/positionSele'
         })
       }
     }
