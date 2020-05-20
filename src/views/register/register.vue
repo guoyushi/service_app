@@ -1,41 +1,27 @@
 <template>
-  <div class="login">
+  <div class="register">
     <div class="logo">
       <img src="../../assets/logo.png" alt />
       <p>方便 快捷 安全</p>
     </div>
     <div class="user_info">
       <van-tabs v-model="active">
-        <van-tab title="账号登录">
-          <van-cell-group>
-            <van-field v-model="phone" type="number" label="手机：" placeholder="请输入手机号" />
-            <van-field v-model="password" type="password" label="密码：" placeholder="请输入密码" />
-          </van-cell-group>
-        </van-tab>
-        <van-tab title="验证码登录">
+        <van-tab title="注册账号">
           <van-cell-group>
             <van-field v-model="phone" type="number" label="手机：" placeholder="请输入手机号" />
             <van-field v-model="password" label="验证码：" placeholder="请输入您的验证码" />
             <span class="verification_code" @click="getCode()">{{verificationCode}}</span>
+            <van-field v-model="password" type="password" label="密码：" placeholder="请输入密码" />
           </van-cell-group>
         </van-tab>
       </van-tabs>
     </div>
-    <div class="login_buttom" @click="login()">登录</div>
-    <div class="login_weixin" @click="weixinLogin()">
-      <img src="../../assets/weixin.png" alt />
-      <span>微信登录</span>
-    </div>
-    <div class="register_or_forget_password">
-      <span class="forget_password" @click="forgetPassword()">忘记密码？</span>
-      <span class="register" @click="register()">注册账号</span>
-    </div>
-    <!--<p @click="login">登录页</p>-->
+		<div class="register_buttom" @click="register()">注册</div>
   </div>
 </template>
 <script>
 export default {
-  name: "login",
+  name: "register",
   data() {
     return {
       active: 0,
@@ -45,25 +31,12 @@ export default {
     };
   },
   methods: {
-    register(){
-      console.log('注册账号')
-      this.$router.push({
-        path:'/register'
-      })
-    },
-    forgetPassword(){
-      console.log('忘记密码');
-    },
     getCode() {
-      console.log(this.verificationCode);
+      console.log("获取验证码");
     },
-    weixinLogin(){
-      console.log('微信登录')
-    },
-    login() {
-      sessionStorage.setItem("isAuthentication", false);
-      this.$router.push("/authentication");
-    }
+		register(){
+			console.log('注册')
+		}
   }
 };
 </script>
@@ -72,7 +45,7 @@ export default {
 .van-hairline-unset--top-bottom::after {
   border: none;
 }
-.login {
+.register {
   width: 100%;
   height: 100%;
   overflow: auto;
@@ -116,6 +89,7 @@ export default {
     .van-cell {
       border-bottom: 1px solid #8c8c8c;
       padding: 0.1rem 0;
+			margin-bottom: .2rem;
       .van-field__label {
         width: 0.6rem;
       }
@@ -128,10 +102,11 @@ export default {
       line-height: 17px;
       position: absolute;
       right: 0;
-      bottom: 0.14rem;
+      bottom: 0.78rem;
+			z-index: 1;
     }
   }
-  .login_buttom {
+  .register_buttom {
     margin: 0 0.46rem;
     margin-top: 0.4rem;
     box-sizing: border-box;
@@ -148,44 +123,6 @@ export default {
     font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
     color: rgba(255, 255, 255, 1);
-  }
-  .login_weixin {
-    margin: 0 0.46rem;
-    margin-top: 0.17rem;
-    box-sizing: border-box;
-    text-align: center;
-    font-size: 0.14rem;
-    font-family: PingFangSC-Regular, PingFang SC;
-    font-weight: 400;
-    color: rgba(21, 211, 107, 1);
-    border-radius: 4px;
-    border: 1px solid rgba(140, 140, 140, 1);
-    height: 0.4rem;
-    line-height: 0.4rem;
-    img {
-      width: 0.2rem;
-      height: 0.16rem;
-      margin-right: 0.07rem;
-    }
-  }
-  .register_or_forget_password {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 0.16rem;
-    .forget_password {
-      font-size: 0.14rem;
-      font-family: PingFangSC-Regular, PingFang SC;
-      font-weight: 400;
-      color: rgba(102, 102, 102, 1);
-      line-height: 0.2rem;
-    }
-    .register {
-      font-size: 0.14rem;
-      font-family: PingFangSC-Regular, PingFang SC;
-      font-weight: 400;
-      color: #4984F9;
-      line-height: 0.2rem;
-    }
   }
 }
 </style>
