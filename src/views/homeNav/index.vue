@@ -88,12 +88,35 @@
         <div class="img_detail">
           <div class="left">
             <img src="../../assets/img/img2.png" alt />
+            <div>
+              <p>日常保洁</p>
+            </div>
           </div>
           <div class="right">
-            <img src="../../assets/img/img7.png" alt />
-            <img src="../../assets/img/img8.png" alt />
-            <img src="../../assets/img/img9.png" alt />
-            <img src="../../assets/img/img6.png" alt />
+            <div class="hover">
+              <img src="../../assets/img/img7.png" alt />
+              <div>
+                <p>日常保洁</p>
+              </div>
+            </div>
+            <div class="hover">
+              <img src="../../assets/img/img8.png" alt />
+              <div>
+                <p>日常保洁</p>
+              </div>
+            </div>
+            <div class="hover">
+              <img src="../../assets/img/img9.png" alt />
+              <div>
+                <p>日常保洁</p>
+              </div>
+            </div>
+            <div class="hover">
+              <img src="../../assets/img/img6.png" alt />
+              <div>
+                <p>日常保洁</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -107,8 +130,21 @@
         <span>关于我们</span>
       </div>
       <div class="foot_content">
-        <div class="QR_code">
-          
+        <div class="foot_left">
+          <div class="QR_code">
+            <img src="../../assets/img/QR_code.jpg" alt />
+            <p>公众号</p>
+          </div>
+          <div class="QR_code">
+            <img src="../../assets/img/QR_code.jpg" alt />
+            <p>公众号</p>
+          </div>
+        </div>
+        <div class="foot_right">
+          <p>客服电话：669-876-550</p>
+          <p>河北遵化偕行科技公司 版权所有</p>
+          <p>翼网文[2018]6786-055号 信息网络传播视听节目许可证号：1805107</p>
+          <p>翼公网安备 43010502000010号 营业性演出许可证号：430000120079</p>
         </div>
       </div>
     </footer>
@@ -310,7 +346,9 @@ export default {
       }
       .img_detail {
         display: flex;
+        margin-top: 0.23rem;
         .left {
+          position: relative;
           flex: 1;
           padding-right: 0.2rem;
           box-sizing: border-box;
@@ -318,19 +356,71 @@ export default {
             width: 5.9rem;
             height: 5.9rem;
           }
+          div {
+            display: none;
+            position: absolute;
+            top: 0.44rem;
+            bottom: 0.44rem;
+            left: 0.44rem;
+            right: 0.44rem;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 0.17rem;
+            p {
+              position: absolute;
+              top: 40%;
+              left: 50%;
+              transform: translate(-50%);
+              font-size: 0.4rem;
+              font-family: PingFangSC-Medium, PingFang SC;
+              font-weight: 500;
+              color: rgba(255, 255, 255, 1);
+              line-height: 0.8rem;
+              border-bottom: 4px solid #ffffff;
+            }
+          }
+          &:hover {
+            div {
+              display: block;
+            }
+          }
         }
         .right {
           flex: 1;
           display: flex;
           flex-wrap: wrap;
-          img {
+          .hover {
+            position: relative;
             box-sizing: border-box;
-            width: 50%;
-            height: auto;
+            flex: 50%;
             padding-right: 0.2rem;
             &:nth-child(1),
             &:nth-child(2) {
               margin-bottom: 0.2rem;
+            }
+            img {
+              width: 100%;
+              height: 100%;
+            }
+            div {
+              position: absolute;
+              top: 0.22rem;
+              bottom: 0.22rem;
+              left: 0.22rem;
+              right: 0.44rem;
+              background: rgba(0, 0, 0, 0.25);
+              border-radius: 0.17rem;
+              p {
+                position: absolute;
+                top: 30%;
+                left: 50%;
+                transform: translate(-50%);
+                font-size: 0.2rem;
+                font-family: PingFangSC-Medium, PingFang SC;
+                font-weight: 500;
+                color: rgba(255, 255, 255, 1);
+                line-height: 0.8rem;
+                border-bottom: 4px solid #ffffff;
+              }
             }
           }
         }
@@ -346,16 +436,50 @@ export default {
       display: flex;
       justify-content: center;
       span {
-        font-size: .2rem;
-        padding-right: .32rem;
-        margin-right: .32rem;
+        font-size: 0.2rem;
+        padding-right: 0.32rem;
+        margin-right: 0.32rem;
         border-right: 1px solid #ffffff;
         font-family: PingFangSC-Medium, PingFang SC;
         font-weight: 500;
         color: rgba(255, 255, 255, 1);
-        line-height: .28rem;
-        &:last-child{
-          border:none;
+        line-height: 0.28rem;
+        &:last-child {
+          border: none;
+        }
+      }
+    }
+    .foot_content {
+      display: flex;
+      justify-content: center;
+      margin-top: 0.4rem;
+      .foot_left {
+        display: flex;
+        margin-right: 0.18rem;
+        .QR_code {
+          margin-right: 0.7rem;
+          img {
+            width: 1.3rem;
+            height: 1.3rem;
+          }
+          p {
+            font-size: 0.2rem;
+            font-family: PingFangSC-Medium, PingFang SC;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 1);
+            line-height: 0.28rem;
+            text-align: center;
+            margin-top: 0.1rem;
+          }
+        }
+      }
+      .foot_right {
+        p {
+          font-size: 0.2rem;
+          font-family: PingFangSC-Medium, PingFang SC;
+          font-weight: 500;
+          color: rgba(255, 255, 255, 1);
+          line-height: 0.4rem;
         }
       }
     }
