@@ -19,14 +19,14 @@ module.exports = {
   chainWebpack: config => {
     // 添加别名
     config.resolve.alias
-     .set('@', resolve('src'))
+      .set('@', resolve('src'))
     //  .set('assets', resolve('src/assets'))
     //  .set('components', resolve('src/components'))
     //  .set('layout', resolve('src/layout'))
     //  .set('base', resolve('src/base'))
     //  .set('static', resolve('src/static'));
   },
-  configureWebpack:()=>({
+  configureWebpack: () => ({
     //   plugins: [new webpack.DefinePlugin({
     //     'process.env.MODULES': '"' + pages + '"'
     //   })],
@@ -46,18 +46,19 @@ module.exports = {
   //       msTileImage: 'favicon.ico'
   //     } 
   //   },
-  //   devServer: {
-  //     host: 'dev.jdcloud.com',
-  //     port: 8080,
-  //     hot: true,
-  //     proxy: {
-  //       '/aioc-api': {
-  //         target: 'http://hebi-cloud.xjoycity.com',
-  //         changeOrigin: true,
-  //         pathRewrite: {
-  //           '^/aioc-api': ''
-  //         }
-  //       }
-  //     }
-  //   }
+  devServer: {
+    // host: 'test.shandindong.com',
+    host: 'localhost',
+    port: 8080,
+    hot: true,
+    proxy: {
+      '/api': {
+        target: '39.99.142.225',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/ api': ''
+        }
+      }
+    }
+  }
 }

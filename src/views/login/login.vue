@@ -34,6 +34,8 @@
   </div>
 </template>
 <script>
+import Api from "@/api/api";
+import { Toast } from "vant";
 export default {
   name: "login",
   data() {
@@ -41,28 +43,66 @@ export default {
       active: 0,
       phone: "",
       password: "",
-      verificationCode: "获取验证码"
+      verificationCode: "获取验证码",
+      miao: 60,
+      interval: null
     };
   },
   methods: {
-    register(){
-      console.log('注册账号')
+    register() {
+      console.log("注册账号");
       this.$router.push({
-        path:'/register'
-      })
+        path: "/register"
+      });
     },
-    forgetPassword(){
-      console.log('忘记密码');
+    forgetPassword() {
+      console.log("忘记密码");
     },
     getCode() {
+      var reg = /\b1[3456789]\d{9}\b/g;
+      let val = reg.test(this.phone);
+      // if (val) {
+        this.interval = setInterval(() => {
+          this.miao = this.miao - 1;
+          this.verificationCode = this.miao + "秒后重新获取";
+          if (this.miao === 0) {
+            clearInterval(this.interval);
+            this.verificationCode = "重新获取";
+          }
+        }, 1000);
+        let params = {
+          // mobile:this.phone,
+          mobile:13521851759,
+          type:1
+        }
+        Api.getValidateCode(params).then(res=>{
+          console.log(res)
+        })
+      // }else{
+      //   Toast.fail("请输入正确的手机号");
+      // }
       console.log(this.verificationCode);
     },
-    weixinLogin(){
-      console.log('微信登录')
+    weixinLogin() {
+      console.log("微信登录");
     },
     login() {
-      sessionStorage.setItem("isAuthentication", false);
-      this.$router.push("/authentication");
+      // sessionStorage.setItem("isAuthentication", false);
+      // this.$router.push("/authentication");
+      console.log(Api);
+      if (this.active === 0) {
+        console.log("密码登录");
+      } else if (this.active === 1) {
+        let params = {
+          mobile: this.phone,
+          validateCode: this.password,
+          loginType:2
+        };
+        Api.ValidateCodeLogin(params).then(res => {
+          console.log(res);
+        });
+      }
+      console.log(this.active);
     }
   }
 };
@@ -121,14 +161,16 @@ export default {
       }
     }
     .verification_code {
+      display: inline-block;
       font-size: 0.12rem;
       font-family: PingFangSC-Regular, PingFang SC;
       font-weight: 400;
       color: #4984f9;
-      line-height: 17px;
+      height: .45rem;
+      line-height: .45rem;
       position: absolute;
       right: 0;
-      bottom: 0.14rem;
+      bottom: 0;
     }
   }
   .login_buttom {
@@ -183,7 +225,7 @@ export default {
       font-size: 0.14rem;
       font-family: PingFangSC-Regular, PingFang SC;
       font-weight: 400;
-      color: #4984F9;
+      color: #4984f9;
       line-height: 0.2rem;
     }
   }
