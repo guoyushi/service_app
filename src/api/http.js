@@ -3,7 +3,7 @@ import axios from 'axios'
 
 // axios.defaults.baseURL = '/api'
 if (process.env.NODE_ENV === 'development') {
-    axios.defaults.baseURL = ''
+    axios.defaults.baseURL = '/api'
 }
 // 请求超时时间
 axios.defaults.timeout = 10000

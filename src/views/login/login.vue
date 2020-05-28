@@ -68,6 +68,7 @@ export default {
           if (this.miao === 0) {
             clearInterval(this.interval);
             this.verificationCode = "重新获取";
+            this.miao = 60;
           }
         }, 1000);
         let params = {
@@ -211,10 +212,13 @@ export default {
     }
   }
   .register_or_forget_password {
+    margin: 0 0.5rem;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin-top: 0.16rem;
     .forget_password {
+      flex: 1;
+      text-align: left;
       font-size: 0.14rem;
       font-family: PingFangSC-Regular, PingFang SC;
       font-weight: 400;
@@ -222,6 +226,8 @@ export default {
       line-height: 0.2rem;
     }
     .register {
+      flex: 1;
+      text-align: right;
       font-size: 0.14rem;
       font-family: PingFangSC-Regular, PingFang SC;
       font-weight: 400;

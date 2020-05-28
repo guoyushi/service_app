@@ -47,16 +47,16 @@ module.exports = {
   //     } 
   //   },
   devServer: {
-    host: 'test.shandindong.com',
-    // host: 'localhost',
+    // host: 'test.shandindong.com',
+    host: 'localhost',
     port: 8080,
     hot: true,
     proxy: {
       '/api': {
-        target: '39.99.142.225',
+        target: 'http://39.99.142.225',
         changeOrigin: true,
         pathRewrite: {
-          '^/ api': ''
+          '^/ api': '/'
         }
       }
     }
