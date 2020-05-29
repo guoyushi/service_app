@@ -2,20 +2,24 @@
   <div class="wrap">
     <Header title="选择服务类别" :flag="true"></Header>
     <div class="tabBox">
-      <div class="tabTitle">
-        家居整理
-      </div>
-      <div class="listBox">
-        <div @click="toSsue(item)" class="listBoxChild" v-for="(item, index) in list" :key="index">
-          {{item}}
+      <div v-for="(item, index) in istOneCategoryData" :key="index">
+        <div class="tabTitle">
+          {{item.second.name}}
+        </div>
+        <div class="listBox">
+          <div @click="toSsue(items.name)" class="listBoxChild" v-for="(items, indexs) in item.three" :key="indexs">
+            {{items.name}}
+          </div>
         </div>
       </div>
+
     </div>
   </div>
 </template>
 
 <script>
   import Header from "@/components/header"
+  import { listOtherCategory } from '@/api/api'
   export default {
     name: "serveTab",
     components: {
@@ -23,8 +27,16 @@
     },
     data () {
       return {
+        istOneCategoryData: [],
         list: ['哇哈哈', '家住整理', '灭鼠', '哇哈哈']
       }
+    },
+    mounted() {
+      this.$loading(true)
+      var data = {
+        oneCategoryId: this.$route.query.id
+      }
+      this.listOtherCategory(data)
     },
     methods: {
       toSsue(item) {
@@ -33,6 +45,13 @@
         sessionStorage.setItem('newName', newName)
         this.$router.push({
           path: '/ssue'
+        })
+      },
+      // 自建服务查询二三级分类
+      listOtherCategory(data) {
+        listOtherCategory(data).then(res => {
+          this.istOneCategoryData = res.data
+          this.$loading(false)
         })
       }
     }

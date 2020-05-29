@@ -20,13 +20,16 @@
                     <div class="positionDetailTop">
                         <div>详细地址</div>
                         <div>
-                            <input type="text" placeholder="请填写您的小区或大厦的…">
+                            <input v-model="posi" type="text" placeholder="请填写您的小区或大厦的…">
                         </div>
                     </div>
                     <div class="positionDetailBottom">
-                        <input type="text" placeholder="请填写详细的楼号门牌号">
+                        <input v-model="posiDetail" type="text" placeholder="请填写详细的楼号门牌号">
                     </div>
                 </div>
+            </div>
+            <div class="success">
+                <div @click="success">保存</div>
             </div>
         </div>
     </div>
@@ -34,6 +37,7 @@
 
 <script>
   import Header from "@/components/header"
+  import { Toast } from 'vant';
   export default {
     name: "site",
     components: {
@@ -41,7 +45,9 @@
     },
     data () {
       return {
-        siteName: ''
+        siteName: '',
+        posi: '',
+        posiDetail: ''
       }
     },
     mounted() {
@@ -51,6 +57,16 @@
       toCityList() {
         this.$router.replace({
           path: 'cityChoose'
+        })
+      },
+      // 保存
+      success() {
+        if (!this.siteName || !this.posi || !this.posiDetail) {
+          Toast.fail('请填写完整地址信息');
+          return
+        }
+        this.$router.push({
+          path: 'ssue'
         })
       }
     }
@@ -139,6 +155,20 @@
             font-size: .14rem;
             font-weight:400;
             color:rgba(51,51,51,1);
+        }
+    }
+    .success{
+        padding: 0 .2rem;
+        margin-top: .2rem;
+        div{
+            text-align: center;
+            height: .4rem;
+            line-height: .4rem;
+            background: #4D82F9;
+            border-radius: .04rem;
+            font-size: .16rem;
+            font-weight:500;
+            color:rgba(255,255,255,1);
         }
     }
 </style>
