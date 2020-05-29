@@ -212,9 +212,9 @@ export default {
     }
   }
   .register_or_forget_password {
-    margin: 0 0.5rem;
+    margin: 0 0.8rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-top: 0.16rem;
     .forget_password {
       flex: 1;
