@@ -1,27 +1,27 @@
 <template>
   <div class="list" ref="wrapper">
     <div>
-      <div class="area">
-        <div class="title border-topbottom">当前城市</div>
-        <div class="button-list">
-          <div class="button-wrapper">
-            <div class="button">{{ this.currentCity }}</div>
-          </div>
-        </div>
-      </div>
-      <div class="area">
-        <div class="title border-topbottom">热门城市</div>
-        <div class="button-list">
-          <div
-            v-for="item of hot"
-            :key="item.id"
-            @click="handleCityClick(item.name)"
-            class="button-wrapper"
-          >
-            <div class="button">{{ item.name }}</div>
-          </div>
-        </div>
-      </div>
+<!--      <div class="area">-->
+<!--        <div class="title border-topbottom">当前城市</div>-->
+<!--        <div class="button-list">-->
+<!--          <div class="button-wrapper">-->
+<!--            <div class="button">{{ this.currentCity }}</div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="area">-->
+<!--        <div class="title border-topbottom">热门城市</div>-->
+<!--        <div class="button-list">-->
+<!--          <div-->
+<!--            v-for="item of hot"-->
+<!--            :key="item.id"-->
+<!--            @click="handleCityClick(item.name)"-->
+<!--            class="button-wrapper"-->
+<!--          >-->
+<!--            <div class="button">{{ item.name }}</div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
       <div class="area" v-for="(item, key) of cities" :key="key" :ref="key">
         <div class="title border-topbottom">{{ key }}</div>
         <ul class="item-list">
@@ -68,8 +68,13 @@ export default {
     }
   },
   methods: {
-    handleCityClick() {
-      this.$router.push("/home");
+    handleCityClick(name) {
+      this.$router.replace({
+        path: "/site",
+        query: {
+          siteName: name
+        }
+      });
     }
   }
 };

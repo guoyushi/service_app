@@ -5,8 +5,8 @@
       选择您的服务类别，立即开店服务
     </div>
     <div class="classifyList">
-      <div @click="toServeTab(item.name)" class="classifyListChild" v-for="(item, index) in classifyListData" :key="index">
-        <img :src="item.imgUrl" alt="">
+      <div @click="toServeTab(item.name, item.id)" class="classifyListChild" v-for="(item, index) in listOneCategoryData" :key="index">
+        <img :src="item.logo" alt="">
         <p>{{item.name}}</p>
       </div>
     </div>
@@ -16,6 +16,7 @@
 
 <script>
   import Header from "@/components/header"
+  import { listOneCategory } from '@/api/api'
   export default {
     name: "index",
     components: {
@@ -23,39 +24,28 @@
     },
     data () {
       return {
-        classifyListData: [
-          {
-            imgUrl: require('../../assets/dianpu.png'),
-            name: '汽车租凭'
-          },
-          {
-            imgUrl: require('../../assets/dianpu.png'),
-            name: '日常保洁'
-          },
-          {
-            imgUrl: require('../../assets/dianpu.png'),
-            name: '上门维修'
-          },
-          {
-            imgUrl: require('../../assets/dianpu.png'),
-            name: '衣物洗护'
-          },
-          {
-            imgUrl: require('../../assets/dianpu.png'),
-            name: '跑腿快递'
-          },
-          {
-            imgUrl: require('../../assets/dianpu.png'),
-            name: '搬家拉货'
-          }
-        ]
+        listOneCategoryData: {},
       }
     },
+    mounted() {
+      this.$loading(true)
+      this.listOneCategory()
+    },
     methods: {
-      toServeTab(item) {
+      toServeTab(item, id) {
         sessionStorage.setItem('tabName', item)
         this.$router.push({
-          path: '/serveTab'
+          path: '/serveTab',
+          query: {
+            id: id
+          }
+        })
+      },
+      // 自建服务查询一级分类
+      listOneCategory(data) {
+        listOneCategory(data).then(res => {
+          this.listOneCategoryData = res.data
+          this.$loading(false)
         })
       }
     }

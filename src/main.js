@@ -6,8 +6,9 @@ import Vant from 'vant';
 import 'vant/lib/index.css';
 import './assets/css/reset.css'
 Vue.config.productionTip = false
-
-Vue.use(Vant);
+import Popups from './utils/popups'
+Vue.use(Popups)
+Vue.use(Vant)
 
 new Vue({
   router,

@@ -1,1 +1,1 @@
-export Header from './header'
+export { default as Loadings } from './loading'
