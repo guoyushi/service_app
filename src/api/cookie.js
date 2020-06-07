@@ -6,7 +6,7 @@ export function getCookie (name) {
     }
     return null
   }
-  
+
   // 删除指定名称的cookie值
   export function delCookie (name) {
     let date = new Date()

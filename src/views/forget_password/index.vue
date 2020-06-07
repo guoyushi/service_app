@@ -6,37 +6,43 @@
     </div>
     <div class="user_info">
       <van-tabs v-model="active">
-        <van-tab title="注册账号">
+        <van-tab title="忘记密码">
           <van-cell-group>
-            <van-field v-model="phone" type="number" label="手机：" placeholder="请输入手机号" />
+            <van-field v-model="phone" type="number" label="手机：" placeholder="请输入您的手机号" />
             <van-field v-model="validateCode" label="验证码：" placeholder="请输入您的验证码" />
             <span class="verification_code" @click="getCode()">{{verificationCode}}</span>
-            <van-field v-model="password" type="password" label="密码：" placeholder="请输入密码" />
+            <van-field v-model="newPassword" type="password" label="新密码：" placeholder="请输入您的密码" />
+            <van-field
+              v-model="surePassword"
+              type="password"
+              label="确认密码："
+              placeholder="请再次确认您的密码"
+            />
           </van-cell-group>
         </van-tab>
       </van-tabs>
     </div>
-		<div class="register_buttom" @click="register()">注册</div>
+    <div class="register_buttom" @click="edit()">确认修改</div>
   </div>
 </template>
 <script>
-import { Toast } from "vant";
-import { isExitMobile, getValidateCode, regist } from '@/api/api'
+import { Toast } from "vaneditt";
+import { getValidateCode, updatePassword } from "@/api/api";
 export default {
   name: "register",
   data() {
     return {
       active: 0,
-      phone: "",
-      password: "",
-      validateCode:'',
+      newPassword: "",
+      surePassword: "",
+      validateCode: "",
       verificationCode: "获取验证码",
       miao: 60
     };
   },
   methods: {
     getCode() {
-      this.phone = '13521851759'
+      this.phone = "13521851759";
       var reg = /\b1[3456789]\d{9}\b/g;
       let val = reg.test(this.phone);
       if (val) {
@@ -47,44 +53,32 @@ export default {
             clearInterval(this.interval);
             this.verificationCode = "重新获取";
             this.miao = 60;
-            
           }
         }, 1000);
         let params = {
-          mobile: this.phone
-          // mobile: "13521851759",
+          mobile: this.phone,
+          type: 3
         };
-        isExitMobile(params).then(res=>{
-          console.log(res)
-          if(res.status === 200){
-              let params = {
-                mobile: this.phone,
-                // mobile: 13521851759,
-                type: 1
-            }
-            getValidateCode(params).then(res=>{
-              console.log(res)
-            })
-          }else{
-            Toast.fail("您的手机号已注册，请登录");
-          }
-        })
+        getValidateCode(params).then(res => {
+          console.log(res);
+        });
       } else {
         Toast.fail("请输入正确的手机号");
       }
       console.log("获取验证码");
     },
-		register(){
-			console.log('注册')
-      let params ={
-        mobile:this.phone,
-        password:this.password,
-        validateCode:this.validateCode
-      }
-      regist(params).then(res=>{
-        console.log(res)
-      })
-		}
+    edit() {
+      console.log("注册");
+      let params = {
+        mobile: this.phone,
+        password: this.newPassword,
+        validateCode: this.validateCode,
+        confirmPassword:this.surePassword
+      };
+      updatePassword(params).then(res => {
+        console.log(res);
+      });
+    }
   }
 };
 </script>
@@ -137,7 +131,7 @@ export default {
     .van-cell {
       border-bottom: 1px solid #8c8c8c;
       padding: 0.1rem 0;
-			margin-bottom: .2rem;
+      margin-bottom: 0.2rem;
       .van-field__label {
         width: 0.6rem;
       }
@@ -151,7 +145,7 @@ export default {
       position: absolute;
       right: 0;
       bottom: 0.78rem;
-			z-index: 1;
+      z-index: 1;
     }
   }
   .register_buttom {

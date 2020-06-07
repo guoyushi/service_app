@@ -30,7 +30,7 @@ service.interceptors.response.use(
     if (res.status !== 200) {
       // if (res.status === 502) {
       // }
-      return Promise.reject(res.msg)
+      // return Promise.reject(res.msg)
     } else {
       return res
     }

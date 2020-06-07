@@ -34,7 +34,7 @@
   </div>
 </template>
 <script>
-import Api from "@/api/api";
+import { getValidateCode, ValidateCodeLogin } from "@/api/api";
 import { Toast } from "vant";
 export default {
   name: "login",
@@ -61,7 +61,7 @@ export default {
     getCode() {
       var reg = /\b1[3456789]\d{9}\b/g;
       let val = reg.test(this.phone);
-      // if (val) {
+      if (val) {
         this.interval = setInterval(() => {
           this.miao = this.miao - 1;
           this.verificationCode = this.miao + "秒后重新获取";
@@ -72,16 +72,16 @@ export default {
           }
         }, 1000);
         let params = {
-          // mobile:this.phone,
-          mobile:13521851759,
-          type:1
-        }
-        Api.getValidateCode(params).then(res=>{
-          console.log(res)
-        })
-      // }else{
-      //   Toast.fail("请输入正确的手机号");
-      // }
+          mobile: this.phone,
+          // mobile: 13521851759,
+          type: 2
+        };
+        getValidateCode(params).then(res => {
+          console.log(res);
+        });
+      } else {
+        Toast.fail("请输入正确的手机号");
+      }
       console.log(this.verificationCode);
     },
     weixinLogin() {
@@ -90,16 +90,26 @@ export default {
     login() {
       // sessionStorage.setItem("isAuthentication", false);
       // this.$router.push("/authentication");
-      console.log(Api);
       if (this.active === 0) {
-        console.log("密码登录");
+        let params = {
+          mobile: this.phone,
+          password: this.password,
+          loginType: 1
+        };
+        ValidateCodeLogin(params).then(res => {
+          if (res.status === 200) {
+            this.$router.push("/authentication");
+          } else {
+            Toast.fail(res.msg);
+          }
+        });
       } else if (this.active === 1) {
         let params = {
           mobile: this.phone,
           validateCode: this.password,
-          loginType:2
+          loginType: 2
         };
-        Api.ValidateCodeLogin(params).then(res => {
+        ValidateCodeLogin(params).then(res => {
           console.log(res);
         });
       }
@@ -167,8 +177,8 @@ export default {
       font-family: PingFangSC-Regular, PingFang SC;
       font-weight: 400;
       color: #4984f9;
-      height: .45rem;
-      line-height: .45rem;
+      height: 0.45rem;
+      line-height: 0.45rem;
       position: absolute;
       right: 0;
       bottom: 0;
